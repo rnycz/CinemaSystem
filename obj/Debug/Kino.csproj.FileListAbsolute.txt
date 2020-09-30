@@ -1,0 +1,15 @@
+D:\Programy Visual Studio\Kino\bin\Debug\Kino.exe.config
+D:\Programy Visual Studio\Kino\bin\Debug\Kino.exe
+D:\Programy Visual Studio\Kino\bin\Debug\Kino.pdb
+D:\Programy Visual Studio\Kino\obj\Debug\Kino.csprojAssemblyReference.cache
+D:\Programy Visual Studio\Kino\obj\Debug\App.g.cs
+D:\Programy Visual Studio\Kino\obj\Debug\Kino_MarkupCompile.cache
+D:\Programy Visual Studio\Kino\obj\Debug\Kino_MarkupCompile.lref
+D:\Programy Visual Studio\Kino\obj\Debug\Kino.g.resources
+D:\Programy Visual Studio\Kino\obj\Debug\Kino.Properties.Resources.resources
+D:\Programy Visual Studio\Kino\obj\Debug\Kino.csproj.GenerateResource.cache
+D:\Programy Visual Studio\Kino\obj\Debug\Kino.csproj.CoreCompileInputs.cache
+D:\Programy Visual Studio\Kino\obj\Debug\Kino.exe
+D:\Programy Visual Studio\Kino\obj\Debug\Kino.pdb
+D:\Programy Visual Studio\Kino\obj\Debug\MainWindow.g.cs
+D:\Programy Visual Studio\Kino\obj\Debug\MainWindow.baml

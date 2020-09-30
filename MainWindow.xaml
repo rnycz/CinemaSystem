@@ -1,0 +1,98 @@
+﻿<Window x:Class="Kino.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kino"
+        mc:Ignorable="d"
+        Title="CinemaSystem" Height="450" Width="800">
+
+    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <StackPanel Margin="0,10,0,15">
+                <!--tutaj zmień^-->
+                <Label Content="Repertuar" FontSize="14" FontFamily="Verdana" />
+                <ListView Margin="10,5,10,15" x:Name="repertuarLV" SelectionChanged="repertuarLV_SelectionChanged" FontSize="14" FontFamily="Verdana">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Tytuł" Width="230" DisplayMemberBinding="{Binding Tytul}"/>
+                            <GridViewColumn Header="Czas trwania" Width="130" DisplayMemberBinding="{Binding CzasTrwania}"/>
+                            <GridViewColumn Header="Od ilu lat?" Width="90" DisplayMemberBinding="{Binding Wiek}" />
+                            <GridViewColumn Header="Gatunek" Width="150" DisplayMemberBinding="{Binding Gatunek}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Label Content="Widzowie" FontFamily="Verdana" FontSize="14" />
+                <ListView Margin="10,5,10,15" x:Name="widzLV" SelectionChanged="widzLV_SelectionChanged" FontFamily="Verdana" FontSize="14">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Numer widza" Width="100" DisplayMemberBinding="{Binding NrWidza}"/>
+                            <GridViewColumn Header="Imie" Width="110" DisplayMemberBinding="{Binding Imie}"/>
+                            <GridViewColumn Header="Nazwisko" Width="110" DisplayMemberBinding="{Binding Nazwisko}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Label Content="Seanse" FontFamily="Verdana" FontSize="14" />
+                <ListView Margin="10,5,10,15" x:Name="seansLV" FontFamily="Verdana" FontSize="14">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Numer seansu" Width="110" DisplayMemberBinding="{Binding NrSeansu}"/>
+                            <GridViewColumn Header="Numer sali" Width="100" DisplayMemberBinding="{Binding Sala.NrSali}"/>
+                            <GridViewColumn Header="Film" Width="200" DisplayMemberBinding="{Binding Repertuar.Tytul}" />
+                            <GridViewColumn Header="Godzina" Width="105" DisplayMemberBinding="{Binding Godzina}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Label x:Name="poka" Content="Wyświetlone dane..." HorizontalAlignment="Left" Margin="10,10,0,30" VerticalAlignment="Top" FontSize="16" FontFamily="Verdana" FontStyle="Italic"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="40,0" Width="695" RenderTransformOrigin="0.5,0.5" Height="265">
+                    <StackPanel.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="0.317"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-0.498"/>
+                        </TransformGroup>
+                    </StackPanel.RenderTransform>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Width="197">
+                        <Label Content="Imię:" FontFamily="Georgia" FontSize="14"/>
+                        <TextBox x:Name="imieLBL" Height="23" TextWrapping="Wrap" Margin="10,0,10,20" Width="100" FontFamily="Verdana" FontSize="14"/>
+                        <Label Content="Nazwisko:" FontSize="14" FontFamily="Georgia"/>
+                        <TextBox x:Name="nazwiskoLBL" Height="23" TextWrapping="Wrap" Margin="24,0,23,10" Width="100" FontFamily="Verdana" FontSize="14"/>
+                        <Label x:Name="sala1Miejsce" Content="" FontFamily="Verdana" FontSize="14"/>
+                        <Label x:Name="sala2Miejsce" Content="" FontFamily="Verdana" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Width="186">
+                        <ListBox Margin="12,10,11,10" x:Name="seansLB" Height="71" SelectionChanged="seansLB_SelectionChanged" FontFamily="Verdana" FontSize="14">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock>
+                                            <Run Text="{Binding Repertuar.Tytul}"></Run>
+                                            <Run Text="{Binding Godzina}"></Run>
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Content="Dodaj widza" Margin="10,10,10,10" Click="Button_Click" Width="131" Height="30" FontFamily="Georgia" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Width="318">
+                        <Label x:Name="trailerLBL" Content="Trailer" HorizontalContentAlignment="Center" Margin="2" FontFamily="Verdana" FontSize="14"/>
+                        <MediaElement x:Name="media" VerticalAlignment="Center" Margin="1,1,10,1" Source="D:\Programy Visual Studio\Kino\media\film1.mp4" LoadedBehavior="Manual" MediaEnded="media_MediaEnded" MediaOpened="media_MediaOpened" Height="176"/>
+                        <Label x:Name="statusLBL" Content="Not playing..." HorizontalContentAlignment="Center" Margin="2" FontFamily="Verdana" />
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button x:Name="playBTN" Content="Play" Margin="5,0" Click="playBTN_Click" FontFamily="Georgia" FontSize="14" Height="24" Width="40"/>
+                            <Button x:Name="pauseBTN" Content="Pause" Margin="5,0" Click="pauseBTN_Click" FontFamily="Georgia" FontSize="14" Height="24" Width="47"/>
+                            <Button x:Name="stopBTN" Content="Stop" Margin="5,0" Click="stopBTN_Click" FontFamily="Georgia" FontSize="14" Height="24" Width="40"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+</Window>
